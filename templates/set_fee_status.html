@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+        <title>set_fee_status</title>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="bird.jpg" alt="logo" style="width:40px;">
+  </a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+     <div style="background-color:green; border-radius:10px;"> <a  color="black" class="nav-link" href="/main">Home</a></div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Downloads</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 3</a>
+    </li>
+  </ul>
+  <div style="position:absolute; right:10px; color:white "><div class="login_png"></div>hello {{name}}</div>
+</nav>
+
+        <div class="col-mx-10">
+            <form action="/set_fee_data" method="post">
+                <div class="form-group col-md-6">
+                <label for "roll_no">Select Roll-No</label>
+                <select name="roll_no">
+                    <option value="18mca02">18mca02</option>
+                    <option value="18mca03">18mca03</option>
+                    </select></div>
+                <div class="form-group col-md-6">
+                <label for "month">Submitted fees of : </label>
+               <select name="month">
+                   <option selected value='January'>Janaury</option> 
+                   
+                   <option value='February'>February</option>
+                   
+                   <option value='March'>March</option>
+                   
+                   <option value='April'>April</option> 
+                   
+                   <option value='May'>May</option>
+                   
+                   <option value='June'>June</option>
+                   
+                   <option value='July'>July</option>
+                   
+                   <option value='August'>August</option> 
+                   
+                   <option value='september'>September</option>
+                   
+                   <option value='october'>October</option>
+                   
+                   <option value='November'>November</option>
+                   
+                   <option value='December'>December</option>
+                    </select></div>
+                <div class="form-group col-md-6">
+                <label for "date">Date of submission</label>
+                <input type="date" name="date"></div>
+                <div class="form-group col-md-6">
+                <label for "rupees">Fees in Rs : </label>
+                <input type="text" name="rupees"></div><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>

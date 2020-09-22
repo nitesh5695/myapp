@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+        <title>Attendance</title>
+        <link rel="stylesheet" href="static/main.css">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
+    </head>
+   
+	<body>
+	    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="bird.jpg" alt="logo" style="width:40px;">
+  </a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/main">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Downloads</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 3</a>
+    </li>
+  </ul>
+  <div style="position:absolute; right:10px; color:white"><h5>hello {{name}}</h5></div>
+</nav>
+
+
+	    <div class="wrapper"
+		     <div id="header">
+		           your attendance percentage is: {{percent}}%
+			
+			   </div>
+	        <div class="attendance-table">
+
+                <table border="2px black">
+                {% for key,value in attendance_status%}
+
+                     <tr>
+                           <td> {{ key }} </td>
+                           <td>  {{ value }} </td>
+                    </tr>
+                {% endfor %}
+                  </table>
+
+	            <div id="png_position"></div>
+	        </div>
+		</div>
+	</body>
+</html>
+
+

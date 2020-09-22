@@ -1,0 +1,245 @@
+@media(min-width:501px)
+{
+    #wrapper{
+        /*border:solid red; padding:15px;*/
+    }
+    #header{
+        background-color: green;
+        height:100px;
+        border-radius: 0px;
+        font-weight: bolder;
+        font-size: 30px;
+        opacity:74%; 
+    }
+    #content{
+        border: solid green;
+        width:100%;
+        height:400px;
+    }
+    #notification{
+        border:solid black;
+        
+        height:100%;
+        margin-top:5px;
+        margin-right:10px;
+       
+        width:30%;
+        float:right;
+    }
+    #all_buttons{
+      
+        border-radius:15px;
+        width:68%;
+        height:auto;
+        float:left;
+        
+    }
+    #footer{
+        height:auto;
+        background-color: dimgray;
+        
+    }
+    .button {
+background-color: #4CAF50; /* Green */
+  border: none;
+  color: black;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius:8px;
+    height:130px;
+    width:130px;
+    position:responsive;
+    
+    
+}
+    .attendance{
+        
+        background-image:url('attendance-mark.png');
+        background-size: cover;
+        height:100px;
+        width:100px;
+        opacity:60%;
+    }
+        button:hover{
+        height:160px;
+        width:160px;
+        }
+    
+    .result{
+        background-image:url('result.png');
+        background-repeat: no-repeat;
+        background-size:80px 100px;
+        opacity: 80%; 
+        height:110px;
+        width:100px;
+        
+        
+    
+    }
+    .fees{
+        background-image:url('fees.png');
+        background-repeat: no-repeat;
+        background-size:80px 100px;
+        opacity: 80%; 
+        height:110px;
+        width:100px;
+        
+    }
+    .assignment{
+        
+        background-image:url('assignment.png');
+        background-repeat: no-repeat;
+        background-size:80px 100px;
+        opacity: 80%; 
+        height:110px;
+        width:100px;
+    }
+    .images{
+        
+        background-image:url('images.png');
+        background-repeat: no-repeat;
+        background-size:80px 100px;
+        opacity: 60%; 
+        height:110px;
+        width:100px;
+    }
+    .holidays{
+        
+        background-image:url('holidays.png');
+        background-repeat: no-repeat;
+        background-size:80px 100px;
+        opacity: 80%; 
+        height:110px;
+        width:100px;
+    }
+    .login_png{
+        float:left;        
+        background-image:url('login.png');
+ 
+        background-repeat: no-repeat;
+        background-size:30px 30px;
+        opacity: 80%; 
+        height:30px;
+        width:30px;
+    }
+}
+@media(max-width:500px)
+{   #wrapper{
+         padding:15px;
+    }
+    #header{
+        background-color: green;
+        height:100px;
+        
+        font-weight: bolder;
+        font-size: 30px;
+    }
+    #content{
+        
+        width:100%;
+        height:400px;
+        display:table;
+    }
+    #notification{
+        border:solid black;
+        height:auto;
+       
+        width:100%;
+        
+        
+    }
+    #all_buttons{
+        
+        border-radius:15px;
+        width:100%;
+        height:auto;
+        
+        
+    }
+    #footer{
+        height:100px;
+        background-color: dimgray;
+        
+    }
+    .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+ 
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius:8px;
+  height:100px;
+  width:100px;
+  position:responsive;
+    
+}
+     .attendance{
+        
+        background-image:url('attendance-mark.png');
+        background-size: 50px 70px;
+        background-repeat: no-repeat;
+        opacity:60%;
+        height:100px;
+        width:100px;
+       
+    }
+    .result{
+        background-image:url('result.png');
+        background-repeat: no-repeat;
+        background-size:50px 70px;
+        opacity: 80%; 
+        height:110px;
+        width:100px;
+    
+    }
+    .fees{
+        background-image:url('fees.png');
+        background-repeat: no-repeat;
+        background-size:50px 70px;
+        opacity: 80%; 
+        height:110px;
+        width:100px;
+        
+    }
+    .assignment{
+        
+        background-image:url('assignment.png');
+        background-repeat: no-repeat;
+        background-size:50px 70px;
+        opacity: 80%; 
+        height:110px;
+        width:100px;
+    }
+    .images{
+        
+        background-image:url('images.png');
+        background-repeat: no-repeat;
+        background-size:50px 70px;
+        opacity: 60%; 
+        height:110px;
+        width:100px;
+    }
+    .holidays{
+        
+        background-image:url('holidays.png');
+        background-repeat: no-repeat;
+        background-size:50px 70px;
+        opacity: 80%; 
+        height:110px;
+        width:100px;
+    }
+    button:hover{
+        height:130px;
+        width:130px;
+        }
+}

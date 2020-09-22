@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="styles/style.css"/>
+        <title>take attendance</title>
+    </head>
+    <body>
+        <div>
+         <form action="/take_data_attendance" method="post">
+             <label for "date">choose date</label>
+             <input type="date" name="date" required/>
+             <table>
+                 {% for i in name_list %} 
+                 {% set roll_no= roll_no_list[loop.index-1] %}
+                 {% set name = name_list[loop.index-1] %}
+                 <tr>
+             <td><label name="roll_no" >{{roll_no}}</label></td>        
+            <td><label name="name">{{name}}</label>
+             <td><label  for "present" >Present</label>
+             <input type="radio" name="{{roll_no}}" value="present"></td>
+             <td><label for "absent">Absent</label>
+             <input type="radio" name="{{roll_no}}" value="absent"></td>
+                </tr>
+                 {% endfor %}
+              </table>
+             <button type="submit">Upate</button>
+         </form>   
+           
+        </div>
+    </body>
+</html>

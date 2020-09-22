@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/main.css">
+
+        <title>teacher_main</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="bird.jpg" alt="logo" style="width:40px;">
+  </a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+     <div style="background-color:green; border-radius:10px;"> <a  color="black" class="nav-link" href="/teacher_main">Home</a></div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Downloads</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">link</a>
+    </li>
+  </ul>
+  <div style="position:absolute; right:10px; color:white "><div class="login_png"></div>hello {{name}}</div>
+</nav>
+         <div id="all_buttons">
+    				       <table>
+                 <tr>
+                    <td ><button  class="button button1" onclick="window.location.href='/take_attendance';"><div class="attendance" >Take Attendance</div></button></td>
+                    <td> <button class="button button2" onclick="window.location.href='/give_marks';"><div class="result">Give Marks</div></button></td>
+                    <td><button class="button button3" onclick="window.location.href='/set_fee_status';"><div class="fees">Fees status</div></button></td>
+               </tr>
+                <tr>
+                    <td><button class="button button4" onclick="window.location.href='/give_assignment';"><div class="assignment"> Give Assignments</div></button></td>
+                    <td><button class="button button5"><div class="holidays">Holidays</div></button></td>
+                    <td><button class="button button6"><div class="images">Upload images</div></button></td>
+               </tr>
+                <tr>
+                    <td><button class="button button7" onclick="window.location.href='/Edit_notification';"><div class="notificatiion_bar"> Edit Notification</div></button></td>
+                </tr>
+               </table>
+ 
+                
+                </div>
+ 
+
+    </body>
+</html>

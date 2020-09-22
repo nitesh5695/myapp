@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="main.css">
+          <title>main page</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="bird.jpg" alt="logo" style="width:40px;">
+  </a>
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+     <div  class="nav-link" href="#">Home</a></div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Downloads</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 3</a>
+    </li>
+  </ul>
+  <div style="position:absolute; right:10px; color:white "><div class="login_png"></div>hello Nitesh</div>
+</nav>
+<div class="marks">
+    <form action="/Data_give_marks" method="post">
+      <div class="form-group"
+      <label for "exam_name">Exame Name : </label>
+        <input class="form-control" type="text" name="exam_name"><br>
+
+        <label for "max_marks">Maximum marks per subject :</label>
+        <input  class="form-control" type="text" name="max_marks"><br>
+        <label for "student_roll_no">Select Student : </label>
+        <select name="student_roll_no">
+            {% for value in roll_no %}
+               <option value="{{value}}">{{value}}</option>
+
+            {% endfor %}
+          </select>
+      <table>
+       <tr>
+
+         <td><input type="text" placeholder="subject name 1 " name="subject" required></td>
+         <td><input type="text" placeholder="Marks" name="marks" required></td>
+        </tr>
+          <tr>
+
+         <td><input type="text" placeholder="subject name 2 " name="subject" required></td>
+         <td><input type="text" placeholder="Marks" name="marks" required</td>
+        </tr>
+         <tr>
+
+         <td><input type="text" placeholder="subject name 3 " name="subject" required></td>
+         <td><input type="text" placeholder="Marks" name="marks" required></td>
+        </tr>
+           <tr >
+             <td id="sub"></td>
+             <td id="marks"></td>
+           </tr>
+      </table>
+      <button class="btn btn-primary" type="submit">Update marks</button>
+      </div>
+      </form>
+     <button  class="btn btn-primary" onclick="add_sub()" > Add Subject</button>
+
+
+    </div>
+<script>
+    var count=4;
+  function  add_sub()
+    {
+ var textfield = document.createElement("input");
+ textfield.type = "text";
+ textfield.required="true";
+
+textfield.placeholder="Subject name "+count;
+textfield.name="subject"
+document.getElementById('sub').appendChild(textfield);
+ var markfield = document.createElement("input");
+ markfield.type = "number";
+ markfield.required="true";
+markfield.placeholder="Marks"
+markfield.name="marks"
+document.getElementById('marks').appendChild(markfield);
+count=count+1;
+}
+  </script>
+    </body>
+</html>

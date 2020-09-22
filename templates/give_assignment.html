@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+        <title>teacher_main</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">
+    <img src="bird.jpg" alt="logo" style="width:40px;">
+  </a>
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+     <div style="background-color:green; border-radius:10px;"> <a  color="black" class="nav-link" href="/teacher_main">Home</a></div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Downloads</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">link</a>
+    </li>
+  </ul>
+  <div style="position:absolute; right:10px; color:white "><div class="login_png"></div>hello {{name}}</div>
+</nav>
+    <div>
+        <form action="/data_give_asignment" method="post">
+            <input type="text" placeholder="subject name" name="subject_name"><br>
+            <textarea placeholder=" write asignment question here" name="assignment"></textarea><br>
+            <label for "date">Submission Date</label>
+            <input type="date" name="last_date"><br>
+            <button class="btn btn-primary" type="submit">submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
