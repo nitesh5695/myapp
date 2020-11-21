@@ -11,9 +11,9 @@
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <!-- Brand/logo -->
-  <a class="navbar-brand" href="#">
-    <img src="bird.jpg" alt="logo" style="width:40px;">
-  </a>
+  
+
+  
 
   <!-- Links -->
   <ul class="navbar-nav">
@@ -30,12 +30,13 @@
   <div style="position:absolute; right:10px; color:white "><div class="login_png"></div>hello {{name}}</div>
 </nav>
     <div>
-        <form action="/data_give_asignment" method="post">
+        <form action="/data_give_asignment" method="post" enctype="multipart/form-data">
             <input type="text" placeholder="subject name" name="subject_name"><br>
             <textarea placeholder=" write asignment question here" name="assignment"></textarea><br>
             <label for "date">Submission Date</label>
             <input type="date" name="last_date"><br>
-            <button class="btn btn-primary" type="submit">submit</button>
+            <input type="file" name="upload_file">
+            <button class="btn btn-primary" type="submit">Submit</button>
         </form>
     </div>
 

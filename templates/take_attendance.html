@@ -2,12 +2,40 @@
 
 <html>
     <head>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="styles/style.css"/>
         <title>take attendance</title>
     </head>
     <body>
-        <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+            
+            <a class="navbar-brand" href="#">Navbar</a>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
+                
+                <span class="navbar-toggler-icon"></span> </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav"> 
+                
+                <ul class="navbar-nav"> 
+                    
+                    <li class="nav-item active"> <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> </li> 
+                    
+                    <li class="nav-item"> <a class="nav-link" href="#">Features</a> </li>
+                    
+                    <li class="nav-item"> <a class="nav-link" href="#">Pricing</a> </li>
+                    
+                    <li class="nav-item"> <a class="nav-link disabled" href="#">Disabled</a>
+                        
+                    </li> </ul> </div> </nav>
+      <div class="row">  
+      <div class="col ml-2">
          <form action="/take_data_attendance" method="post">
              <label for "date">choose date</label>
              <input type="date" name="date" required/>
@@ -17,7 +45,7 @@
                  {% set name = name_list[loop.index-1] %}
                  <tr>
              <td><label name="roll_no" >{{roll_no}}</label></td>        
-            <td><label name="name">{{name}}</label>
+             <td><label name="name">{{name}}</label>
              <td><label  for "present" >Present</label>
              <input type="radio" name="{{roll_no}}" value="present"></td>
              <td><label for "absent">Absent</label>
@@ -25,9 +53,30 @@
                 </tr>
                  {% endfor %}
               </table>
-             <button type="submit">Upate</button>
+             <button type="submit"> Upate </button>
          </form>   
            
         </div>
+          <div class="border border-dark border-rounded col bg-success mr-5 pt-3 pb-4">
+            <p> Here, you can change date or status of student attendance</p>
+            <h5> Reupdate attendance</h5>
+            <form action="/take_data_attendance" method="post">
+              <label for "mroll_no" class="pt-3">select roll_no</label>
+              <select name="mroll_no">
+                {% for roll in roll_no_list %}
+                <option>{{roll}}</option>  
+                {% endfor %}
+              </select><br>
+              <label for "mdate">Select Date</label>
+              <input type="date" name="mdate"><br>
+               <label for "present">Present</label>   
+              <input type="radio" name="mstatus" value="present">
+               <label for "absent">Absent</label><br>        
+              <input type="radio" name="mstatus" value="absent">
+              
+              <button type="submit" class="bg-primary">Submit</button>
+            </form>
+          </div>
+      </div>
     </body>
 </html>

@@ -4,7 +4,8 @@
     <head>
         <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="static/main.css">
+        <link rel="stylesheet" href="static/Home1.css">
+    
 
         <title>teacher_main</title>
     </head>
@@ -18,17 +19,23 @@
   <!-- Links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-     <div style="background-color:green; border-radius:10px;"> <a  color="black" class="nav-link" href="/teacher_main">Home</a></div>
+     <div style="background-color:green; border-radius:10px;"> <a  color="black" class="nav-link" href="/login_formdata">Home</a></div>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Downloads</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">link</a>
-    </li>
+    
   </ul>
-  <div style="position:absolute; right:10px; color:white "><div class="login_png"></div>hello {{name}}</div>
+  <div  style="position:absolute; right:10px; color:white "><div class="login_png"></div><div class="dropdown" style="float:right;">
+  <a class= "dropbtn" >{{name}}</a>
+  <div class="dropdown-content">
+  <a href="/logout">Log out</a>
+  <a href="#">class-code</a>
+  <a href="#">profile</a>
+  </div>
+</div></div>
 </nav>
+
          <div id="all_buttons">
     				       <table>
                  <tr>

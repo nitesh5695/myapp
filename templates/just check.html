@@ -1,19 +1,7 @@
 <!DOCTYPE html>
-
-<html>
-    <head>
-        <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-        <title>Attendance</title>
-        <link rel="stylesheet" href="main.css">
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   
-    </head>
-   
-	<body>
-	  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>{{name}}</title>
+  <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -54,32 +42,7 @@
   </div>
 </nav>
   
-<div class="wrapper">
-		     <div class="border border-dark rounded my-4 mx-5 bg-success h-25" style="height:auto;">
-		         <div style="background-color:yellow; width:{{percent}}%; height:40px;">
-		           Attendance  is: {{percent}}%
-			       </div>
-			   </div>
-	        <div class="mr-5 px-5">
+<div class="container">
 
-                <table border="1px black" style="font-size:17px; padding:10px;" class="mr-5">
-                {% for key,value in attendance_status%}
-
-                     <tr>
-                           <td class="px-2"> {{ key }} </td>
-                         {%if value=="absent"%}
-                           <td style="color:red; padding:20px;">  {{ value }} </td>
-                         {%else%}
-                         <td style="color:green; padding:20px">  {{ value }} </td>
-                         {% endif %}
-                    </tr>
-                {% endfor %}
-                  </table>
-
-	            <div id="png_position"></div>
-	        </div>
-		</div>
-	</body>
+</body>
 </html>
-
-
