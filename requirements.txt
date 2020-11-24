@@ -5,6 +5,7 @@ Flask-Mail==0.9.1
 gunicorn==20.0.4
 itsdangerous==1.1.0
 Jinja2==2.11.2
+Pyrebase==3.0.27
 MarkupSafe==1.1.1
 mysql-connector==2.2.9
 smtp==0.1.0
