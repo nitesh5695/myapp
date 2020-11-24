@@ -121,7 +121,7 @@ def form():
         elif(password==rep_password):
             print(email)
             session['otp']=send_otp(session['cr_email'])
-            print("otp send")
+            print(f"otp send otp is: {session['otp']}")
 
             return render_template("otp_page.html")
         else:
@@ -155,11 +155,12 @@ def otp_message():
             mycursor.execute(create_assignment_table)
             create_fee_table="create table fees_{}(roll_no text,date blob,month text,rupees text)".format(session['class_code'])
             mycursor.execute(create_fee_table)
-            mydb.commit()
-            print('executed')
+            
+            print(session['class_code'])
             send_notification(session['cr_email'],"successfully class created.your class code is    {}   .please remember this code for in Future use".format(session['class_code']))
+            mydb.commit()
            
-            return redirect(url_for("login", message="successfully class created"))
+            return render_template("login.html", message="successfully class created")
         else:
             return render_template('otp_page.html',message="incorrect otp try again")
 @app.route('/join_class_form',methods=['POST'])
@@ -194,7 +195,7 @@ def join_class_form():
         elif (Spassword == Srep_password):
 
             session['otp']=send_otp(session['jo_email'])
-            print("otp send")
+            print(session['otp'])
 
             return render_template("student_otp_page.html")
         else:
