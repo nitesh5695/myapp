@@ -1,32 +1,43 @@
 from flask import Flask ,render_template,request,session,redirect,send_file
-import mysql.connector
+from flask_mail import Mail, Message
+
 import sqlite3
+import pyrebase
 from werkzeug.utils import secure_filename
 import random
 import smtplib
 import string
 import os
+app=Flask(__name__)
+mail=Mail(app)
+
+app.config['MAIL_SERVER']='smtp.sendgrid.net'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'apikey'
+app.config['MAIL_PASSWORD'] = "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"
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
+
 def send_otp(email):
     
-    obj=smtplib.SMTP('smtp.gmail.com',587)
+
     otp=str(random.randint(4567,6785))
-    obj.ehlo()
-    obj.starttls()
-    obj.login("tanya.assistant1916@gmail.com","TANYA 1916")
-    obj.sendmail('tanya.assistant1916@gmail.com',email,otp)
-    print("send successfully")
-    obj.close()
+    
+    
+    msg = Message(" Enterschool email verificaton", sender = 'tanya.assistant1916@gmail.com', recipients = [email])
+    msg.body = f"otp is {otp}"
+    mail.send(msg)
+    
     return otp
 def send_notification(email,message):
     
-    obj=smtplib.SMTP('smtp.gmail.com',587)
     
-    obj.ehlo()
-    obj.starttls()
-    obj.login("tanya.assistant1916@gmail.com","TANYA 1916")
-    obj.sendmail('tanya.assistant1916@gmail.com',email,message)
+    msg = Message(" Enterschool Notification", sender = 'tanya.assistant1916@gmail.com', recipients = [email])
+    msg.body = message
+    mail.send(msg)
     print("send  notify successfully")
-    obj.close()
+    
     
 
 
@@ -34,6 +45,17 @@ def send_notification(email,message):
 
 mydb=sqlite3.connect('nitesh.db',check_same_thread=False)
 mycursor=mydb.cursor()
+config={    "apiKey": "AIzaSyC-x73AHgduv4CTXeYJu4rTjnrwDfj1yls",
+    "authDomain": "enterschool-a70f5.firebaseapp.com",
+    "databaseURL": "https://enterschool-a70f5.firebaseio.com",
+    "projectId": "enterschool-a70f5",
+    "storageBucket": "enterschool-a70f5.appspot.com",
+    "messagingSenderId": "408802600224",
+    "appId": "1:408802600224:web:3fe1983eb48f8cc0c4a345",
+    "measurementId": "G-PVJMPYECRW"
+    }
+firebase=pyrebase.initialize_app(config)
+storage=firebase.storage()
 def random_generator():
     size=4 
     chars=string.ascii_lowercase
@@ -57,7 +79,7 @@ def random_generator():
         
         
         
-app=Flask(__name__)
+
 app.secret_key="nit1234"
 @app.route('/')
 def detals():
@@ -129,20 +151,15 @@ def otp_message():
             mycursor.execute(create_student_attendance_table)
             create_notifi_table = 'create table notification_{}(date blob,notification_data text)'.format(session['class_code'])
             mycursor.execute(create_notifi_table)
-            create_assignment_table="create table assignment_{}(assign_date blob,subject text,assignment text,date blob)".format(session['class_code'])
+            create_assignment_table="create table assignment_{}(assign_date blob,subject text,assignment text,date blob,assignment_file text)".format(session['class_code'])
             mycursor.execute(create_assignment_table)
             create_fee_table="create table fees_{}(roll_no text,date blob,month text,rupees text)".format(session['class_code'])
             mycursor.execute(create_fee_table)
             mydb.commit()
             print('executed')
             send_notification(session['cr_email'],"successfully class created.your class code is    {}   .please remember this code for in Future use".format(session['class_code']))
-            download_directory='/sdcard/'
-            directory='{}_downloads'.format(session['class_code'])
-            path=os.path.join(download_directory,directory)
-            os.mkdir(path)
-            print('successfully directory created')
-
-            return render_template("login.html", message="successfully class created")
+           
+            return redirect(url_for("login", message="successfully class created"))
         else:
             return render_template('otp_page.html',message="incorrect otp try again")
 @app.route('/join_class_form',methods=['POST'])
@@ -176,7 +193,7 @@ def join_class_form():
 
         elif (Spassword == Srep_password):
 
-            # send_otp(email)
+            session['otp']=send_otp(session['jo_email'])
             print("otp send")
 
             return render_template("student_otp_page.html")
@@ -187,7 +204,7 @@ def join_class_form():
 def student_otp_formdata():
     if (request.method == 'POST'):
         otp_value = request.form.get('otp')
-        session['otp']=send_otp(session['jo_email'])
+        
         
 
         if (session['otp'] == otp_value):
@@ -195,10 +212,10 @@ def student_otp_formdata():
             p = (session['jo_name'],session['jo_email'], session['jo_password'], session['jo_mobile'], session['jo_roll_no'],session['jo_class_code'])
             query = """insert into {} values("{}","{}","{}","{}","{}","{}")""".format(session['jo_class_code'],session['jo_name'],session['jo_email'], session['jo_password'], session['jo_mobile'], session['jo_roll_no'],session['jo_class_code'])
             mycursor.execute(query)
-            mydb.commit()
-            create_marks_table="create table {}_{}(exam_name text,max_mark integer,subject text,mark integer)".format(session['jo_roll_no'],session['jo_class_code'])
+            
+            create_marks_table="create table '{}_{}'(exam_name text,max_mark integer,subject text,mark integer)".format(session['jo_roll_no'],session['jo_class_code'])
             mycursor.execute(create_marks_table)
-
+            mydb.commit()
 
             return render_template("login.html", message="successfully class joined")
         else:
@@ -260,7 +277,7 @@ def login_message():
     
     
                 if len(user) > 0:
-                    mycursor.execute(fetch_name, d)
+                    mycursor.execute(fetch_name)
                     lname = [row[0] for row in mycursor.fetchall()]
                     for name in lname:
                       session['Sname']=name
@@ -409,7 +426,7 @@ def get_notificaton_form_data():
     if request.method=='POST':
         notification=request.form.get('textarea')
         print(notification)
-        create_notifi_table="insert into notification_{} values(curdate(),'{}')".format(session['class_code'],notification)
+        create_notifi_table="insert into notification_{} values(current_date,'{}')".format(session['class_code'],notification)
         print(create_notifi_table)
         mycursor.execute(create_notifi_table)
         mydb.commit()
@@ -482,10 +499,10 @@ def data_give_assignment():
         last_date=request.form.get('last_date')
         assignment_file=request.files['upload_file']
         assignment_filename=assignment_file.filename.replace(" ","")
-        upload_path='//sdcard//{}_downloads'.format(session['class_code'])
-        assignment_file.save(os.path.join(upload_path,secure_filename(assignment_filename)))
+        cloud_path='{}_uploads/{}'.format(session['class_code'],assignment_filename)
+        storage.child(cloud_path).put(assignment_file)
         print(assignment_filename)
-        assignment_query="""insert into assignment_{} values(curdate(),"{}","{}","{}","{}")""".format(session['class_code'],subject,assignment,last_date,assignment_filename)
+        assignment_query="""insert into assignment_{} values(current_date,"{}","{}","{}","{}")""".format(session['class_code'],subject,assignment,last_date,assignment_filename)
         q_format=(subject,assignment,last_date,assignment_filename)
         mycursor.execute(assignment_query)
         mydb.commit()
@@ -501,8 +518,10 @@ def assignment():
 @app.route('/downloads/<file_name>' ,methods=['GET'])
 def download_file(file_name):
     attached_filename=file_name
-    download_path='//sdcard//{}_downloads//{}'.format(session['class_code'],attached_filename)
-    return send_file(download_path, as_attachment=True)
+    download_path='{}_uploads/{}'.format(session['class_code'],attached_filename)
+    links=storage.child(download_path).get_url(None)
+    print(links)
+    return f"""<html> <body><a href="{links}" download>Downloads</a></body><html>"""
 @app.route('/set_fee_status')    
 def set_fee():
     return render_template('set_fee_status.html')
