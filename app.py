@@ -257,7 +257,7 @@ def login_message():
                       for value in Tname:
                         session['tname']=value
         
-                      return render_template('teacher_main.html', name=session['tname'])
+                      return render_template('teacher_main.html', name=session['tname'],code=session['class_code'])
                     else:
                         return render_template('login.html',message='try again password or email is incorrect')
                 if(login_type=='student'):
@@ -285,11 +285,16 @@ def login_message():
                        
                     
     
-                    return render_template('main.html', name=session['Sname'],notification=notifications)
+                    return render_template('main.html', name=session['Sname'],notification=notifications,code=session['class_code'] )
                 else:
                     return render_template('login.html', message='try again password or email is incorrect')
         else:
             return render_template('login.html',message='class code is wrong')
+@app.route("/logout")
+def logout():
+    session.pop("class_code",None)
+    session.pop("lemail",None)
+    return render_template("login.html",message="successfully logout")
 @app.route('/teacher_main')
 def teacher_main():
     return render_template('teacher_main.html',name=session['tname'])
@@ -362,7 +367,7 @@ def take_data_attendance():
             
                values=(date,roll_no,'name',status)
                query_update_attendance=""" insert into student_attendance_{} values("{}","{}","{}","{}")""".format(session['Tclass_code'],date,roll_no,'name',status)
-               mycursor.execute(query_update_attendance,values)
+               mycursor.execute(query_update_attendance)
                mydb.commit()
         if date is None:
           
@@ -452,7 +457,7 @@ def Data_give_marks():
         for (x,y) in zip(subject,marks):
             print(x)
             print(y)
-            insert_mark_query="""insert into {}_{} values("{}","{}","{}","{}")""".format(roll_no,session['class_code'],exam_name,max_mark,x,y)
+            insert_mark_query="""insert into '{}_{}' values("{}","{}","{}","{}")""".format(roll_no,session['class_code'],exam_name,max_mark,x,y)
             insert_format=(exam_name,max_mark,x,y)
             mycursor.execute(insert_mark_query)
         mydb.commit()
@@ -464,7 +469,7 @@ def my_marks():
     roll_no = [row[0] for row in mycursor.fetchall()]
     print(roll_no[0])
 
-    query_exam = "select exam_name from {}_{} group by exam_name".format(roll_no[0],session['class_code'],)
+    query_exam = "select exam_name from '{}_{}' group by exam_name".format(roll_no[0],session['class_code'])
     mycursor.execute(query_exam)
     result = [row[0] for row in mycursor.fetchall()]
 
@@ -473,15 +478,15 @@ def my_marks():
 def result_data():
     if request.method=="POST":
        exam_type=request.form.get('exams')
-       roll_no_query = """select roll_no from {} where email="{}" """.format(session['class_code'], login_email)
+       roll_no_query = """select roll_no from {} where email="{}" """.format(session['class_code'], session['lemail'])
        mycursor.execute(roll_no_query)
        roll_no = [row[0] for row in mycursor.fetchall()]
        print(roll_no[0])
-       query_exam = "select exam_name from {}_{} group by exam_name".format(roll_no[0], session['class_code'])
+       query_exam = "select exam_name from '{}_{}' group by exam_name".format(roll_no[0], session['class_code'])
        mycursor.execute(query_exam)
        Eresult = [row[0] for row in mycursor.fetchall()]
 
-       query_marks = """select * from {}_{} where exam_name="{}" """.format(roll_no[0], session['class_code'],exam_type)
+       query_marks = """select * from '{}_{}' where exam_name="{}" """.format(roll_no[0], session['class_code'],exam_type)
        mycursor.execute(query_marks)
        result = mycursor.fetchall()
        Ename = result[0][0]
